@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<table [ngClass]="tbl">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th style="text-align: center;" colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let v of vendors">
+            <td>{{v.id}}</td>
+            <td>{{v.code}}</td>
+            <td>{{v.name}}</td>
+            <td>{{v.address}}</td>
+            <td>{{v.city}}</td>
+            <td>{{v.state}}</td>
+            <td>{{v.zip}}</td>
+            <td>{{v.phone}}</td>
+            <td>{{v.email}}</td>
+            <td> <a routerLink="/vendor/detail/{{v.id}}">Details</a> </td>
+            <td> <a routerLink="/vendor/edit/{{v.id}}">Edit</a> </td>
+        </tr>
+    </tbody>
+</table>
+<a style="color: black;" routerLink="/vendor/create">Create New Vendor</a>

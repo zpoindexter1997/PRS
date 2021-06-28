@@ -1,0 +1,14 @@
+<div>
+    <p>
+        <input [(ngModel)]="username" type="text" placeholder="Username">
+    </p>
+    <p>
+        <input [(ngModel)]="password" type="password" placeholder="Password">
+    </p>
+    <p>
+        <button (click)="login()">Login</button>
+    </p>
+    <p style="color: red;">
+        {{message}}
+    </p>
+</div>

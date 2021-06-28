@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<table [ngClass]="tbl">
+    <tbody>
+
+        <tr>
+            <th>Id</th>
+            <td>{{user.id}}</td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td>{{user.password}}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{user.firstname}}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{user.lastname}}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <th>Is Reviewer</th>
+            <td>{{user.isReviewer | bool}}</td>
+        </tr>
+        <tr>
+            <th>Is Admin</th>
+            <td>{{user.isAdmin | bool}}</td>
+        </tr>
+    </tbody>
+</table>

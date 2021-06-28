@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<p class="bg-dark" style="border: 0px; margin: 0;"><input class="bg-light" style="border: 0px; margin: 0;" type="text" [(ngModel)]="searchCriteria" placeholder="Search"></p>
+<table [ngClass]="tbl">
+    <thead>
+        <tr>
+            <th>Id<button (click)="sortFn('id')" class="btn btn-link"><img [src]="idImg" width="45px"></button></th>
+            <th>Username<button (click)="sortFn('username')" class="btn btn-link"><img [src]="usernameImg" width="45px"></button></th>
+            <th>First Name<button (click)="sortFn('firstname')" class="btn btn-link"><img [src]="firstNameImg" width="45px"></button></th>
+            <th>Last Name<button (click)="sortFn('lastname')" class="btn btn-link"><img [src]="lastNameImg" width="45px"></button></th>
+            <th>Phone<button (click)="sortFn('phone')" class="btn btn-link"><img [src]="phoneImg" width="45px"></button></th>
+            <th>Email<button (click)="sortFn('email')" class="btn btn-link"><img [src]="emailImg" width="45px"></button></th>
+            <th>Is Reviewer<button (click)="sortFn('isReviewer')" class="btn btn-link"><img [src]="isReviewerImg" width="45px"></button></th>
+            <th>Is Admin<button (click)="sortFn('isAdmin')" class="btn btn-link"><img [src]="isAdminImg" width="45px"></button></th>
+            <th style="text-align: center;" colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users | searchUser:searchCriteria | sort:sortColumn:sortAsc ">
+            <td>{{u.id}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.firstname}}</td>
+            <td>{{u.lastname}}</td>
+            <td>{{u.phone}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.isReviewer | bool}}</td>
+            <td>{{u.isAdmin | bool}}</td>
+            <td> <a routerLink="/user/detail/{{u.id}}">Details</a> </td>
+            <td> <a routerLink="/user/edit/{{u.id}}">Edit</a> </td>
+        </tr>
+    </tbody>
+</table>
+<a style="color: black;" routerLink="/user/create">Create New User</a>

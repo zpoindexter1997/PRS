@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<table [ngClass]="tbl">
+    <tbody>
+        <tr>
+            <th>Code</th>
+            <td> <input [(ngModel)]="newVendor.code" type="text"> </td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td><input [(ngModel)]="newVendor.name" type="password"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td><input [(ngModel)]="newVendor.address" type="text"></td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td><input [(ngModel)]="newVendor.city" type="text"></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td><input [(ngModel)]="newVendor.state" type="text"></td>
+        </tr>
+        <tr>
+            <th>Zip</th>
+            <td><input [(ngModel)]="newVendor.zip" type="text"></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td><input [(ngModel)]="newVendor.phone" type="text"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input [(ngModel)]="newVendor.email" type="text"></td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="create()" class="btn-success">Create Vendor</button>

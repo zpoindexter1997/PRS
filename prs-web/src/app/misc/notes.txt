@@ -1,0 +1,12 @@
+<div> around the buttons to sort </div>
+Make misc folder for pipes and extras
+Move error page to misc folder
+Style sort buttons (headers)
+make virtuals nullable | null = null
+add requestlines under request class - requestLines: RequestLine[] | null = null
+reverse navbar colors
+add reviews component under requestline folder
+add navbar item for reviews only seen if loggedInUser is a reviewer
+move delete buttons from edit components to detail components
+requestlines dropdown from requests
+add an about component

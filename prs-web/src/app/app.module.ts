@@ -5,10 +5,10 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ErrornotfoundComponent } from './errornotfound/errornotfound.component';
+import { ErrornotfoundComponent } from './misc/errornotfound/errornotfound.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './misc/home/home.component';
 import { LoginComponent } from './user/login/login.component';
 import { BoolDisplayPipe } from './bool-display.pipe';
 import { UserListComponent } from './user/user-list/user-list.component';
@@ -23,10 +23,6 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
-import { RequestListComponent } from './request/request-list/request-list.component';
-import { RequestDetailComponent } from './request/request-detail/request-detail.component';
-import { RequestCreateComponent } from './request/request-create/request-create.component';
-import { RequestEditComponent } from './request/request-edit/request-edit.component';
 import { RequestlineListComponent } from './requestline/requestline-list/requestline-list.component';
 import { RequestlineCreateComponent } from './requestline/requestline-create/requestline-create.component';
 import { RequestlineDetailComponent } from './requestline/requestline-detail/requestline-detail.component';
@@ -34,6 +30,17 @@ import { RequestlineEditComponent } from './requestline/requestline-edit/request
 import { NavbaritemComponent } from './navbaritem/navbaritem.component';
 import { SortPipe } from './misc/sort.pipe';
 import { SearchUserPipe } from './user/search-user.pipe';
+import { SearchVendorPipe } from './vendor/search-vendor.pipe';
+import { SearchProductPipe } from './product/search-product.pipe';
+import { AboutComponent } from './misc/about/about.component';
+import { RequestCreateComponent } from './request/request-create/request-create.component';
+import { RequestEditComponent } from './request/request-edit/request-edit.component';
+import { RequestDetailComponent } from './request/request-detail/request-detail.component';
+import { RequestListComponent } from './request/request-list/request-list.component';
+import { RequestLinesComponent } from './request/request-lines/request-lines.component';
+import { SearchRequestPipe } from './request/search-request.pipe';
+import { RequestReviewListComponent } from './request/request-review-list/request-review-list.component';
+import { RequestReviewItemComponent } from './request/request-review-item/request-review-item.component';
 
 @NgModule({
   declarations: [
@@ -56,17 +63,24 @@ import { SearchUserPipe } from './user/search-user.pipe';
     ProductDetailComponent,
     ProductCreateComponent,
     ProductEditComponent,
-    RequestListComponent,
-    RequestDetailComponent,
-    RequestCreateComponent,
-    RequestEditComponent,
     RequestlineListComponent,
     RequestlineCreateComponent,
     RequestlineDetailComponent,
     RequestlineEditComponent,
     NavbaritemComponent,
     SortPipe,
-    SearchUserPipe
+    SearchUserPipe,
+    SearchVendorPipe,
+    SearchProductPipe,
+    AboutComponent,
+    RequestCreateComponent,
+    RequestEditComponent,
+    RequestDetailComponent,
+    RequestListComponent,
+    RequestLinesComponent,
+    SearchRequestPipe,
+    RequestReviewListComponent,
+    RequestReviewItemComponent
   ],
   imports: [
     BrowserModule,

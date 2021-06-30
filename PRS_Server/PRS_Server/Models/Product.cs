@@ -21,7 +21,7 @@ namespace PRS_Server.Models
         public decimal Price { get; set; }
 
         [Required, StringLength(30)]
-        public string Unit { get; set; }
+        public string Unit { get; set; } = "each";
 
         [StringLength(255)]
         public string PhotoPath { get; set; }

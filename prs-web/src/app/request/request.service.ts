@@ -16,10 +16,10 @@ export class RequestService {
   ) { }
 
   list(): Observable<Request[]> {
-    return this.http.get(`${baseurl}`) as Observable<Request[]>;
+    return this.http.get(`${baseurl}/detailed`) as Observable<Request[]>;
   }
   get(id: number): Observable<Request> {
-    return this.http.get(`${baseurl}/${id}`) as Observable<Request>;
+    return this.http.get(`${baseurl}/${id}/detailed`) as Observable<Request>;
   }
   create(product: Request): Observable<Request> {
     return this.http.post(`${baseurl}`, product) as Observable<Request>;
@@ -29,5 +29,17 @@ export class RequestService {
   }
   delete(id: number): Observable<Request>{
     return this.http.delete(`${baseurl}/${id}`) as Observable<Request>;
+  }
+  requests(id: number): Observable<Request[]>{
+    return this.http.get(`${baseurl}/${id}/underReview`) as Observable<Request[]>
+  }
+  setReview(request: Request): Observable<Request>{
+    return this.http.put(`${baseurl}/${request.id}/review`,request) as Observable<Request>
+  }
+  approve(request: Request): Observable<Request>{
+    return this.http.put(`${baseurl}/${request.id}/approved`, request) as Observable<Request>
+  }
+  reject(request: Request): Observable<Request>{
+    return this.http.put(`${baseurl}/${request.id}/rejected`, request) as Observable<Request>
   }
 }

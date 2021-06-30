@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SystemService } from 'src/app/misc/system.service';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
 
@@ -12,17 +13,19 @@ export class VendorCreateComponent implements OnInit {
 
   constructor(
     private vendorsvc: VendorService,
+    private syssvc: SystemService,
     private router: Router
   ) {
   }
-  newVendor = new Vendor(0, "", "", "", "", "", "", "", "")
+  newVendor = new Vendor();
   tbl: string = "table table-dark table-striped";
 
   ngOnInit(): void {
+    if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
   }
   create(): void {
     this.vendorsvc.create(this.newVendor).subscribe(
-      res => { console.log("Vendor created successfuly!", res) },
+      res => { console.debug("Vendor created successfuly!", res) },
       err => console.error(err))
     this.router.navigateByUrl("/vendor/list");
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SystemService } from 'src/app/misc/system.service';
 import { User } from '../user.class';
 import { UserService } from '../user.service';
 
@@ -10,9 +11,10 @@ import { UserService } from '../user.service';
 })
 export class UserCreateComponent implements OnInit {
 
-  newUser = new User(0, "", "", "", "", "", "", false, false);
+  newUser = new User();
   constructor(
     private usersvc: UserService,
+    private syssvc: SystemService,
     private router: Router
   ) {
   }
@@ -20,10 +22,11 @@ export class UserCreateComponent implements OnInit {
   tbl: string = "table table-dark table-striped";
 
   ngOnInit(): void {
+    if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
   }
   create(): void {
     this.usersvc.create(this.newUser).subscribe(
-      res => { console.log("User created successfuly!", res) },
+      res => { console.debug("User created successfuly!", res) },
       err => console.error(err))
     this.router.navigateByUrl("/user/list");
   }

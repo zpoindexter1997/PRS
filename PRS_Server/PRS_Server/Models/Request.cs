@@ -9,10 +9,7 @@ namespace PRS_Server.Models
 {
     public class Request
     {
-        public static string StatusNew { get; set; } = "NEW";
-        public static string StatusReview { get; set; } = "REVIEW";
-        public static string StatusAccepted { get; set; } = "ACCEPTED";
-        public static string StatusRejected { get; set; } = "REJECTED";
+
 
         public int Id { get; set; }
 
@@ -29,7 +26,7 @@ namespace PRS_Server.Models
         public string DeliveryMode { get; set; } = "Pickup";
 
         [Required, StringLength(10)]
-        public string Status { get; set; } = Request.StatusNew;
+        public string Status { get; set; } = "NEW";
 
         [Column(TypeName = "decimal(11,2)")]
         public decimal Total { get; set; } = 0;
@@ -37,6 +34,8 @@ namespace PRS_Server.Models
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        public virtual IEnumerable<RequestLine> RequestLines { get; set; }
 
 
     }

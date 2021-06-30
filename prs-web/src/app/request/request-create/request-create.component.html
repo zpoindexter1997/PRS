@@ -1,2 +1,23 @@
 <app-navbar></app-navbar>
-<p>request-create works!</p>
+<table [ngClass]="tbl">
+    <tbody>
+        <tr>
+            <th>Description</th>
+            <td><input [(ngModel)]="newRequest.description" type="text"></td>
+        </tr>
+        <tr>
+            <th>Justification</th>
+            <td><input [(ngModel)]="newRequest.justification" type="text"></td>
+        </tr>
+        <tr>
+            <th>Delivery Mode</th>
+            <td>
+                <select [(ngModel)]="newRequest.deliveryMode">
+                    <option>Pickup</option>
+                    <option>Delivery</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="create()" class="btn-success">Create Request</button>

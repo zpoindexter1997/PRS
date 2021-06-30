@@ -1,2 +1,34 @@
 <app-navbar></app-navbar>
-<p>product-create works!</p>
+<table [ngClass]="tbl">
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td><input [(ngModel)]="newProduct.name" type="text"></td>
+        </tr>
+        <tr>
+            <th>Part Number</th>
+            <td> <input [(ngModel)]="newProduct.partNbr" type="text"> </td>
+        </tr>
+        <tr>
+            <th>Photo Path</th>
+            <td><input [(ngModel)]="newProduct.photoPath" type="text"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td><input [(ngModel)]="newProduct.price" type="number"></td>
+        </tr>
+        <tr>
+            <th>Unit</th>
+            <td><input [(ngModel)]="newProduct.unit" type="text"></td>
+        </tr>
+        <tr>
+            <th>Vendor</th>
+            <td>
+                <select [(ngModel)]="newProduct.vendorId">
+                    <option *ngFor="let v of vendors" value="{{v.id}}">{{v.name}}</option>
+                </select>
+            </td>
+            </tr>
+    </tbody>
+</table>
+<button (click)="create()" class="btn-success">Create Product</button>

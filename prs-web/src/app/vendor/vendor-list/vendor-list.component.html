@@ -1,21 +1,22 @@
 <app-navbar></app-navbar>
+<p class="bg-dark" style="border: 0px; margin: 0px;"><input class="bg-light" style="border: 0px; margin: 0;" type="text" [(ngModel)]="searchCriteria" placeholder="Search"></p>
 <table [ngClass]="tbl">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th>Id<button (click)="sortFn('id')" class="btn btn-link"><img [src]="idImg" width="45px"></button></th>
+            <th>Code<button (click)="sortFn('code')" class="btn btn-link"><img [src]="codeImg" width="45px"></button></th>
+            <th>Name<button (click)="sortFn('name')" class="btn btn-link"><img [src]="nameImg" width="45px"></button></th>
+            <th>Address<button (click)="sortFn('address')" class="btn btn-link"><img [src]="addressImg" width="45px"></button></th>
+            <th>City<button (click)="sortFn('city')" class="btn btn-link"><img [src]="cityImg" width="45px"></button></th>
+            <th>State<button (click)="sortFn('state')" class="btn btn-link"><img [src]="stateImg" width="45px"></button></th>
+            <th>Zip<button (click)="sortFn('zip')" class="btn btn-link"><img [src]="zipImg" width="45px"></button></th>
+            <th>Phone<button (click)="sortFn('phone')" class="btn btn-link"><img [src]="phoneImg" width="45px"></button></th>
+            <th>Email<button (click)="sortFn('email')" class="btn btn-link"><img [src]="emailImg" width="45px"></button></th>
             <th style="text-align: center;" colspan="2">Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let v of vendors">
+        <tr *ngFor="let v of vendors | searchVendor:searchCriteria | sort:sortColumn:sortAsc">
             <td>{{v.id}}</td>
             <td>{{v.code}}</td>
             <td>{{v.name}}</td>

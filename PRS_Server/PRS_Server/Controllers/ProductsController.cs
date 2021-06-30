@@ -27,6 +27,7 @@ namespace PRS_Server.Controllers
         {
             return await _context.Products.ToListAsync();
         }
+
         // GET: api/Products/detailed
         [HttpGet("detailed")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsDetailed()
@@ -49,6 +50,7 @@ namespace PRS_Server.Controllers
 
             return product;
         }
+
         // GET: api/Products/5/detailed
         [HttpGet("{id}/detailed")]
         public async Task<ActionResult<Product>> GetProductDetailed(int id)
@@ -66,8 +68,6 @@ namespace PRS_Server.Controllers
         }
 
         // PUT: api/Products/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
@@ -98,8 +98,6 @@ namespace PRS_Server.Controllers
         }
 
         // POST: api/Products
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {

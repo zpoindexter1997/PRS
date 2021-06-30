@@ -1,10 +1,9 @@
 a{
     padding: 0 10px;
     text-decoration: none;
-    color: silver;
+    color: black;
 }
 a:hover{
-    color: black;
     background-color: silver;
 }
 li{

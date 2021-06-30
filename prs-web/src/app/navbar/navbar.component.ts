@@ -9,19 +9,22 @@ import { Navbar } from './navbar.class';
 })
 export class NavbarComponent implements OnInit {
 
-  navbar: Navbar[]=[
-    new Navbar("Home", "/home"),
-    new Navbar("Users", "/user/list"),
-    new Navbar("Vendors", "/vendor/list"),
-    new Navbar("Products", "/product/list"),
-    new Navbar("Requests", "/request/list"),
-    new Navbar("Log Out", "/login")
-  ]
   constructor(
     private syssvc: SystemService
-  ) { }
-  loggedInUser = this.syssvc.loggedInUser;
+    ) { }
+    loggedInUser = this.syssvc.loggedInUser;
+    user: string = "";
+    display: boolean = false;
+    navbar: Navbar[]=[
+      new Navbar("Home", "/home"),
+      new Navbar("Users", "/user/list"),
+      new Navbar("Vendors", "/vendor/list"),
+      new Navbar("Products", "/product/list"),
+      new Navbar("Requests", `/request/list`)
+    ]
   ngOnInit(): void {
+    this.display = this.loggedInUser?.isReviewer == true ? true : false;
+    this.user = this.loggedInUser?.firstname == null ? "none" : this.loggedInUser.firstname
   }
-  nv: string = "navbar navbar-dark bg-dark"
+  nv: string = "navbar navbar-light bg-secondary bg-gradient"
 }

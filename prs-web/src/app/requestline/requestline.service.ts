@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ObjectUnsubscribedError, Observable } from 'rxjs';
+import {  Observable } from 'rxjs';
 import { RequestLine } from './requestline.class';
 
 
@@ -20,7 +20,7 @@ export class RequestLineService {
     return this.http.get(`${baseurl}`) as Observable<RequestLine[]>;
   }
   get(id: number): Observable<RequestLine> {
-    return this.http.get(`${baseurl}/${id}`) as Observable<RequestLine>;
+    return this.http.get(`${baseurl}/${id}/detailed`) as Observable<RequestLine>;
   }
   create(RequestLine: RequestLine): Observable<RequestLine> {
     return this.http.post(`${baseurl}`, RequestLine) as Observable<RequestLine>;

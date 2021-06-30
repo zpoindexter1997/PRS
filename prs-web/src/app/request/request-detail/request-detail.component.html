@@ -1,2 +1,39 @@
 <app-navbar></app-navbar>
-<p>request-detail works!</p>
+<table [ngClass]="tbl">
+    <tbody>
+
+        <tr>
+            <th>Id</th>
+            <td>{{request.id}}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{request.description}}</td>
+        </tr>
+        <tr>
+            <th>Justification</th>
+            <td>{{request.justification}}</td>
+        </tr>
+        <tr>
+            <th>Delivery Mode</th>
+            <td>{{request.deliveryMode}}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{request.status}}</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td>{{request.total | currency}}</td>
+        </tr>
+        <tr>
+            <th>UserId</th>
+            <td>{{request.userId}}</td>
+        </tr>
+        <tr>
+            <th>User</th>
+            <td>{{request.user?.username}}</td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="delete()" class="btn-danger">Delete</button>

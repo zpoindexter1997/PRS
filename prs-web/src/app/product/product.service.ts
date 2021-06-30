@@ -16,10 +16,10 @@ export class ProductService {
   ) { }
 
   list(): Observable<Product[]> {
-    return this.http.get(`${baseurl}`) as Observable<Product[]>;
+    return this.http.get(`${baseurl}/detailed`) as Observable<Product[]>;
   }
   get(id: number): Observable<Product> {
-    return this.http.get(`${baseurl}/${id}`) as Observable<Product>;
+    return this.http.get(`${baseurl}/${id}/detailed`) as Observable<Product>;
   }
   create(product: Product): Observable<Product> {
     return this.http.post(`${baseurl}`, product) as Observable<Product>;

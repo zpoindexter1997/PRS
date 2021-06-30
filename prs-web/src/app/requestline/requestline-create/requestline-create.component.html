@@ -1,2 +1,22 @@
 <app-navbar></app-navbar>
-<p>requestline-create works!</p>
+<table [ngClass]="tbl" *ngIf="products">
+    <tbody>
+        <tr>
+            <th>Request Id</th>
+            <td><input disabled [(ngModel)]="requestId" type="text"></td>
+        </tr>
+        <tr>
+            <th>Product</th>
+            <td>
+                <select [(ngModel)]="newRequestLine.productId">
+                    <option *ngFor="let p of products" value="{{p.id}}">{{p.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td><input [(ngModel)]="newRequestLine.quantity" type="number"></td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="create()" class="btn-success">Create Request Line</button>

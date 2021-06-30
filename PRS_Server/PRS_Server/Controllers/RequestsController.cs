@@ -20,11 +20,15 @@ namespace PRS_Server.Controllers
         {
             _context = context;
         }
+
         // GET: api/Requests/{id}/underReview
         [HttpGet("{id}/underReview")]
         public async Task<ActionResult<IEnumerable<Request>>> GetRequestsUnderReview(int id)
         {
             return await _context.Requests
+                                .Include(u => u.User)
+                .Include(r => r.RequestLines)
+                    .ThenInclude(p => p.Product)
                 .Where(r => r.Status == "REVIEW" && r.UserId != id)
                 .ToListAsync();
         }
@@ -35,12 +39,15 @@ namespace PRS_Server.Controllers
         {
             return await _context.Requests.ToListAsync();
         }
+
         // GET: api/Requests/detailed
         [HttpGet("detailed")]
         public async Task<ActionResult<IEnumerable<Request>>> GetRequestsDetailed()
         {
             return await _context.Requests
                 .Include(u => u.User)
+                .Include(r => r.RequestLines)
+                    .ThenInclude(p => p.Product)
                 .ToListAsync();
         }
 
@@ -64,6 +71,8 @@ namespace PRS_Server.Controllers
         {
             var request = await _context.Requests
                 .Include(u => u.User)
+                .Include(r => r.RequestLines)
+                    .ThenInclude(p => p.Product)
                 .SingleOrDefaultAsync(r => r.Id == id);
 
             if (request == null)
@@ -103,6 +112,33 @@ namespace PRS_Server.Controllers
 
             return NoContent();
         }
+
+        //Manually Review(replaces our 3 review methods)
+        // PUT: api/Requests/5/manual/{status}
+        [HttpPut("{id}/manual/{status}")]
+        public async Task<IActionResult> PutRequestManual(int id, string status)
+        {
+            var statuses = "|REVIEW| |APPROVED| |REJECTED|";
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+            if (!statuses.Contains($"|{status.ToUpper()}|"))
+            {
+                return BadRequest();
+            }
+            if (status.ToUpper() == "REVIEW")
+            {
+                request.Status = request.Total <= 50 ? "APPROVED" : "REVIEW";
+            }
+            else
+            {
+                request.Status = status.ToUpper();
+            }
+            return await PutRequest(id, request);
+        }
+
         // PUT: api/Requests/5/review
         [HttpPut("{id}/review")]
         public async Task<IActionResult> PutRequestReview(int id)
@@ -117,8 +153,9 @@ namespace PRS_Server.Controllers
             request.Status = (request.Total <= 50 && request.Total > 0) ? "APPROVED" : "REVIEW";
             return await PutRequest(id, request);
         }
-        // PUT: api/Requests/5/review
-        [HttpPut("{id}/approve")]
+
+        // PUT: api/Requests/5/approved
+        [HttpPut("{id}/approved")]
         public async Task<IActionResult> PutRequestApprove(int id)
         {
             var request = await _context.Requests.FindAsync(id);
@@ -131,8 +168,9 @@ namespace PRS_Server.Controllers
 
             return await PutRequest(id, request);
         }
-        // PUT: api/Requests/5/review
-        [HttpPut("{id}/reject")]
+
+        // PUT: api/Requests/5/rejected
+        [HttpPut("{id}/rejected")]
         public async Task<IActionResult> PutRequestReject(int id)
         {
             var request = await _context.Requests.FindAsync(id);

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SystemService } from 'src/app/misc/system.service';
 import { User } from '../user.class';
 import { UserService } from '../user.service';
 
@@ -11,13 +13,16 @@ export class UserListComponent implements OnInit {
   tbl: string = "table table-dark table-striped"
 
   constructor(
-    private usersvc: UserService
+    private usersvc: UserService,
+    private syssvc: SystemService,
+    private router: Router
   ) { }
   users!: User[];
 
   ngOnInit(): void {
+    if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
     this.usersvc.list().subscribe(
-      res => {this.users = res; console.log("Users loaded successfuly!", res)},
+      res => {this.users = res; console.debug("Users loaded successfuly!", res)},
       err => console.error(err))
   }
   

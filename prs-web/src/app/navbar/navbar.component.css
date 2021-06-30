@@ -3,15 +3,14 @@ nav{
     margin-bottom: 0px;
 }
 ul{
-    margin-bottom: 3px;
+    margin-bottom: 0px;
 }
 a{
     padding: 0 10px;
     text-decoration: none;
-    color: silver;
+    color: black;
 }
 a:hover{
-    color: black;
     background-color: silver;
 }
 li{

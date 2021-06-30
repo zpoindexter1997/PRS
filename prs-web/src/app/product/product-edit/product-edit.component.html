@@ -1,2 +1,38 @@
 <app-navbar></app-navbar>
-<p>product-edit works!</p>
+<table [ngClass]="tbl">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td> <input disabled type="text" placeholder="{{product.id}}"></td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td><input [(ngModel)]="product.name" type="text" placeholder="{{product.name}}"></td>
+        </tr>
+        <tr>
+            <th>Part Number</th>
+            <td><input [(ngModel)]="product.partNbr" type="text" placeholder="{{product.partNbr}}"></td>
+        </tr>
+        <tr>
+            <th>Photo</th>
+            <td><input [(ngModel)]="product.photoPath" type="text" placeholder="{{product.photoPath}}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td><input [(ngModel)]="product.price" type="text" placeholder="{{product.price}}"></td>
+        </tr>
+        <tr>
+            <th>Unit</th>
+            <td><input [(ngModel)]="product.unit" type="text" placeholder="{{product.unit}}"></td>
+        </tr>
+        <tr>
+            <th>Vendor</th>
+            <td>
+                <select [(ngModel)]="product.vendorId">
+                    <option *ngFor="let v of vendors" value="{{v.id}}">{{v.name}}</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="save()" class="btn-success">Save</button>

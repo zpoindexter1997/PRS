@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SystemService } from 'src/app/misc/system.service';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
 
@@ -13,6 +14,7 @@ export class VendorEditComponent implements OnInit {
   constructor(
     private vendorsvc: VendorService,
     private activatedRoute: ActivatedRoute,
+    private syssvc: SystemService,
     private router: Router
    ) {
    }
@@ -20,23 +22,17 @@ export class VendorEditComponent implements OnInit {
    tbl: string = "table table-dark table-striped"
    
    ngOnInit(): void {
-     const id = this.getId();
+    if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    const id = this.getId();
      this.vendorsvc.get(id).subscribe(
-       res => {this.vendor = res; console.log("Vendor loaded successfuly!", res)},
+       res => {this.vendor = res; console.debug("Vendor loaded successfuly!", res)},
        err => console.error(err))
    }
  
    save(): void{
      const id = this.getId();
      this.vendorsvc.update(this.vendor).subscribe(
-       res => {this.vendor = res; console.log("Vendor deleted successfuly!", res)},
-       err => console.error(err))
-       this.router.navigateByUrl("/vendor/list");
-   }
-   delete(): void{
-     const id = this.getId();
-     this.vendorsvc.delete(id).subscribe(
-       res => {this.vendor = res; console.log("Vendor deleted successfuly!", res)},
+       res => {this.vendor = res; console.debug("Vendor updated successfuly!", res)},
        err => console.error(err))
        this.router.navigateByUrl("/vendor/list");
    }

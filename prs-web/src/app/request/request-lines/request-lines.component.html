@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<a routerLink="/requestline/create/{{request.id}}">Create RequestLine</a>
+<table [ngClass]="tbl" *ngIf="request">
+    <thead>
+        <th style="text-align: center; font-size: 1.5rem;" class="bg-dark" colspan="9">Request</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Justification</th>
+            <th>Rejection Reason</th>
+            <th>Delivery Mode</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Username</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>{{request.id}}</td>
+            <td>{{request.description}}</td>
+            <td>{{request.justification}}</td>
+            <td>{{request.rejectionReason}}</td>
+            <td>{{request.deliveryMode}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.total | currency}}</td>
+            <td>{{request.user?.username}}</td>
+            <td><button (click)="review()">Set For Review</button> </td>
+        </tr>
+    </tbody>
+</table>
+<table [ngClass]="tbl" *ngIf="request">
+    <thead>
+        <th style="text-align: center; font-size: 1.5rem;" class="bg-dark" colspan="7">Request Lines</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <th>Product Id</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let rl of request.requestLines">
+            <td>{{rl.id}}</td>
+            <td>{{rl.productId}}</td>
+            <td>{{rl.product?.name}}</td>
+            <td>{{rl.product?.price | currency}}</td>
+            <td>{{rl.quantity}}</td>
+            <td> <a routerLink="/requestline/edit/{{rl.id}}">Edit</a> </td>
+        </tr>
+    </tbody>
+</table>

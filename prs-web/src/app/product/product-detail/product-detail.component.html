@@ -1,2 +1,34 @@
 <app-navbar></app-navbar>
-<p>product-detail works!</p>
+<table [ngClass]="tbl" *ngIf="vendors">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{product.id}}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{product.name}}</td>
+        </tr>
+        <tr>
+            <th>Part Number</th>
+            <td>{{product.partNbr}}</td>
+        </tr>
+        <tr>
+            <th>Photo</th>
+            <td>{{product.photoPath}}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{product.price | currency}}</td>
+        </tr>
+        <tr>
+            <th>Unit</th>
+            <td>{{product.unit}}</td>
+        </tr>
+        <tr>
+            <th>Vendor</th>
+            <td>{{product.vendor?.name}}</td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="delete()" class="btn-danger">Delete</button>

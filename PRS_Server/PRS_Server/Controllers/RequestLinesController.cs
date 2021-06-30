@@ -45,7 +45,6 @@ namespace PRS_Server.Controllers
         public async Task<ActionResult<IEnumerable<RequestLine>>> GetRequestLinesDetailed()
         {
             return await _context.RequestLines
-                .Include(r => r.Request).ThenInclude(u => u.User)
                 .Include(p => p.Product).ThenInclude(v => v.Vendor)
                 .ToListAsync();
         }
@@ -69,7 +68,6 @@ namespace PRS_Server.Controllers
         public async Task<ActionResult<RequestLine>> GetRequestLineDetailed(int id)
         {
             var requestLine = await _context.RequestLines
-                .Include(r => r.Request).ThenInclude(u => u.User)
                 .Include(p => p.Product).ThenInclude(v => v.Vendor)
                 .SingleOrDefaultAsync(rl => rl.Id == id);
 

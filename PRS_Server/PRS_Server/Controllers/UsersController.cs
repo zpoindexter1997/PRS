@@ -20,6 +20,7 @@ namespace PRS_Server.Controllers
         {
             _context = context;
         }
+
         //Login
         // GET: api/Users/username/password
         [HttpGet("{username}/{password}")]
@@ -34,8 +35,6 @@ namespace PRS_Server.Controllers
 
             return user;
         }
-
-
 
         // GET: api/Users
         [HttpGet]

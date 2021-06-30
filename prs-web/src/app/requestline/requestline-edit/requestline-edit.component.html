@@ -1,2 +1,22 @@
 <app-navbar></app-navbar>
-<p>requestline-edit works!</p>
+<table [ngClass]="tbl">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td> <input disabled type="text" placeholder="{{requestline.id}}"></td>
+        </tr>
+        <tr>
+            <th>Product</th>
+            <td>
+                <select [(ngModel)]="requestline.productId">
+                    <option *ngFor="let p of products" value="{{p.id}}">{{p.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td><input [(ngModel)]="requestline.quantity" type="number" placeholder="{{requestline.quantity}}"></td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="save()" class="btn-success">Save</button>

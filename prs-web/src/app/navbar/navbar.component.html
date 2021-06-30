@@ -1,5 +1,13 @@
 <nav [ngClass]="nv">
     <ul>
         <app-navbaritem [navbar]="n" *ngFor="let n of navbar"></app-navbaritem>
+        <li *ngIf="display"><a routerLink="/request/review/list">Review</a></li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/login">Log Out</a></li>
     </ul>
+    <div>
+        <ul>
+            <li>Welcome {{user}}!</li>
+        </ul>
+    </div>
 </nav>

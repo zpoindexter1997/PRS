@@ -1,2 +1,27 @@
 <app-navbar></app-navbar>
-<p>request-edit works!</p>
+<table [ngClass]="tbl">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td> <input disabled type="text" placeholder="{{request.id}}"></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td><input [(ngModel)]="request.description" type="text" placeholder="{{request.description}}"></td>
+        </tr>
+        <tr>
+            <th>Justification</th>
+            <td><input [(ngModel)]="request.justification" type="text" placeholder="{{request.justification}}"></td>
+        </tr>
+        <tr>
+            <th>Delivery Mode</th>
+            <td>
+                <select [(ngModel)]="request.deliveryMode">
+                    <option>Pickup</option>
+                    <option>Delivery</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="save()" class="btn-success">Save</button>

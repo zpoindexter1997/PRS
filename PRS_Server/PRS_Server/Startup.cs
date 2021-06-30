@@ -30,6 +30,7 @@ namespace PRS_Server
 
             services.AddDbContext<PRSContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PRSContext")));
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +42,8 @@ namespace PRS_Server
             }
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseAuthorization();
 

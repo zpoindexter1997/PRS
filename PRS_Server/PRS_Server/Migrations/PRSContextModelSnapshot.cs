@@ -124,7 +124,8 @@ namespace PRS_Server.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("RequestId");
+                    b.HasIndex("RequestId")
+                        .IsUnique();
 
                     b.ToTable("RequestLines");
                 });
@@ -260,8 +261,8 @@ namespace PRS_Server.Migrations
                         .IsRequired();
 
                     b.HasOne("PRS_Server.Models.Request", "Request")
-                        .WithMany()
-                        .HasForeignKey("RequestId")
+                        .WithOne("RequestLine")
+                        .HasForeignKey("PRS_Server.Models.RequestLine", "RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

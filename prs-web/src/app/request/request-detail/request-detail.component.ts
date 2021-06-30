@@ -21,10 +21,12 @@ export class RequestDetailComponent implements OnInit {
    }
    request!: Request;
    tbl: string = "table table-dark table-striped";
+   display: boolean = false;
+   loggedInUser = this.syssvc.loggedInUser;
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
-
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     const routeParams = this.activatedRoute.snapshot.paramMap;
     const id = Number(routeParams.get('id'))
     this.requestsvc.get(id).subscribe(
@@ -34,9 +36,10 @@ export class RequestDetailComponent implements OnInit {
   delete(): void{
     const id = this.getId();
     this.requestsvc.delete(id).subscribe(
-      res => {this.request = res; console.debug("Request deleted successfuly!", res)},
-      err => console.error(err))
+      res => {this.request = res; console.debug("Request deleted successfuly!", res);
       this.router.navigateByUrl("/request/list");
+    },
+      err => console.error(err))
   }
    
   getId(): number{

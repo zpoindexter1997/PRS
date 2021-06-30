@@ -20,9 +20,12 @@ export class VendorDetailComponent implements OnInit {
    }
    vendor!: Vendor;
    tbl: string = "table table-dark table-striped";
+   display: boolean = false;
+   loggedInUser = this.syssvc.loggedInUser;
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     const routeParams = this.activatedRoute.snapshot.paramMap;
     const id = Number(routeParams.get('id'))
     this.vendorsvc.get(id).subscribe(
@@ -32,9 +35,10 @@ export class VendorDetailComponent implements OnInit {
   delete(): void{
     const id = this.getId();
     this.vendorsvc.delete(id).subscribe(
-      res => {this.vendor = res; console.debug("Vendor deleted successfuly!", res)},
+      res => {this.vendor = res; console.debug("Vendor deleted successfuly!", res);
+      this.router.navigateByUrl("/vendor/list");},
       err => console.error(err))
-      this.router.navigateByUrl("/vendor/list");
+
   }
    
   getId(): number{

@@ -33,8 +33,9 @@ export class RequestCreateComponent implements OnInit {
     this.newRequest.userId = this.syssvc.loggedInUser?.id == null ? 0 : this.syssvc.loggedInUser?.id;
     console.debug(this.newRequest)
     this.requestsvc.create(this.newRequest).subscribe(
-      res => { console.debug("Request created successfuly!", res) },
+      res => { console.debug("Request created successfuly!", res);
+      this.router.navigateByUrl(`/request/list`);
+    },
       err => console.error(err))
-    this.router.navigateByUrl(`/request/list`);
   }
 }

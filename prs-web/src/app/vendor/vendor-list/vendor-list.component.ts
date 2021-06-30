@@ -19,9 +19,12 @@ export class VendorListComponent implements OnInit {
     private router: Router
   ) { }
   vendors!: Vendor[];
+  display: boolean = false;
+  loggedInUser = this.syssvc.loggedInUser;
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     this.vendorsvc.list().subscribe(
       res => {this.vendors = res; console.debug("Vendors loaded successfuly!", res)},
       err => console.error(err))

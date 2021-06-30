@@ -40,9 +40,10 @@ export class ProductEditComponent implements OnInit {
      const id = this.getId();
      this.product.vendorId = +this.product.vendorId;
      this.productsvc.update(this.product).subscribe(
-       res => {this.product = res; console.debug("Product updated successfuly!", res)},
-       err => console.error(err))
+       res => {this.product = res; console.debug("Product updated successfuly!", res);
        this.router.navigateByUrl("/product/list");
+      },
+       err => console.error(err))
    }
  
    getId(): number{

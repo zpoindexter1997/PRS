@@ -32,9 +32,10 @@ export class UserEditComponent implements OnInit {
   save(): void{
     const id = this.getId();
     this.usersvc.update(this.user).subscribe(
-      res => {this.user = res; console.debug("User deleted successfuly!", res)},
-      err => console.error(err))
+      res => {this.user = res; console.debug("User deleted successfuly!", res);
       this.router.navigateByUrl("/user/list");
+    },
+      err => console.error(err))
   }
 
 

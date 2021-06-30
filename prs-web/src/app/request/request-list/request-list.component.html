@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <p class="bg-dark" style="border: 0px; margin: 0px;"><input class="bg-light" style="border: 0px; margin: 0;" type="text" [(ngModel)]="searchCriteria" placeholder="Search"></p>
-<table [ngClass]="tbl">
+<table [ngClass]="tbl" *ngIf="requests">
     <thead>
         <tr>
             <th>Id<button (click)="sortFn('id')" class="btn btn-link"><img [src]="idImg" width="45px"></button></th>
@@ -23,9 +23,9 @@
             <td>{{r.total | currency}}</td>
             <td>{{r.user?.username}}</td>
             <td> <a routerLink="/request/detail/{{r.id}}">Details</a> </td>
-            <td> <a routerLink="/request/edit/{{r.id}}">Edit</a> </td>
+            <td *ngIf="display"> <a routerLink="/request/edit/{{r.id}}">Edit</a> </td>
             <td> <a routerLink="/request/lines/{{r.id}}">Request Lines</a> </td>
         </tr>
     </tbody>
 </table>
-<a style="color: black;" routerLink="/request/create">Create New Request</a>
+<a *ngIf="display" style="color: black;" routerLink="/request/create">Create New Request</a>

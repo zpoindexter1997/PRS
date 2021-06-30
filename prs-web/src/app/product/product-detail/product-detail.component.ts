@@ -22,10 +22,13 @@ export class ProductDetailComponent implements OnInit {
    }
    product!: Product;
    vendors: Vendor[] = [];
-   tbl: string = "table table-dark table-striped"
+   tbl: string = "table table-dark table-striped";
+   display: boolean = false;
+   loggedInUser = this.syssvc.loggedInUser;
    
    ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
      const id = this.getId();
      this.vendorsvc.list().subscribe(
       res => {this.vendors = res; console.debug("Vendors successfully loaded!", res)},
@@ -43,8 +46,9 @@ export class ProductDetailComponent implements OnInit {
   delete(): void{
     const id = this.getId();
     this.productsvc.delete(id).subscribe(
-      res => {this.product = res; console.debug("Product deleted successfuly!", res)},
-      err => console.error(err))
+      res => {this.product = res; console.debug("Product deleted successfuly!", res);
       this.router.navigateByUrl("/product/list");
+    },
+      err => console.error(err))
   }
 }

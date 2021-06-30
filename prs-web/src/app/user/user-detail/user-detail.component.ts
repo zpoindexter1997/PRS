@@ -21,9 +21,12 @@ export class UserDetailComponent implements OnInit {
    user!: User;
    tbl: string = "table table-dark table-striped";
    id: number = 0;
+   display: boolean = false;
+   loggedInUser = this.syssvc.loggedInUser;
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     this.id = this.getId();
     this.usersvc.get(this.id).subscribe(
       res => {this.user = res; console.debug("User loaded successfuly!", res)},
@@ -32,9 +35,10 @@ export class UserDetailComponent implements OnInit {
   delete(): void{
     this.id = this.getId();
     this.usersvc.delete(this.id).subscribe(
-      res => {this.user = res; console.debug("User deleted successfuly!", res)},
-      err => console.error(err))
+      res => {this.user = res; console.debug("User deleted successfuly!", res);
       this.router.navigateByUrl("/user/list");
+    },
+      err => console.error(err))
   }
   getId(): number{
     const routeParams = this.activatedRoute.snapshot.paramMap;

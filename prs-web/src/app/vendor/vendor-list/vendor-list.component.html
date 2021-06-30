@@ -27,8 +27,8 @@
             <td>{{v.phone}}</td>
             <td>{{v.email}}</td>
             <td> <a routerLink="/vendor/detail/{{v.id}}">Details</a> </td>
-            <td> <a routerLink="/vendor/edit/{{v.id}}">Edit</a> </td>
+            <td *ngIf="display"> <a routerLink="/vendor/edit/{{v.id}}">Edit</a> </td>
         </tr>
     </tbody>
 </table>
-<a style="color: black;" routerLink="/vendor/create">Create New Vendor</a>
+<a *ngIf="display" style="color: black;" routerLink="/vendor/create">Create New Vendor</a>

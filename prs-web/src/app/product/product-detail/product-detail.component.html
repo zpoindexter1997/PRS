@@ -31,4 +31,4 @@
         </tr>
     </tbody>
 </table>
-<button (click)="delete()" class="btn-danger">Delete</button>
+<button *ngIf="display" (click)="delete()" class="btn-danger">Delete</button>

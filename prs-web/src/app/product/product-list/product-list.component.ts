@@ -24,9 +24,13 @@ export class ProductListComponent implements OnInit {
   ) { }
   products!: Product[];
   vendors: Vendor[] = [];
+  display: boolean = false;
+  loggedInUser = this.syssvc.loggedInUser;
+
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     this.vendorsvc.list().subscribe(
       res => {this.vendors = res; console.debug("Vendors successfully loaded!", res)},
       err => {console.error(err)})

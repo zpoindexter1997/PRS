@@ -32,9 +32,10 @@ export class VendorEditComponent implements OnInit {
    save(): void{
      const id = this.getId();
      this.vendorsvc.update(this.vendor).subscribe(
-       res => {this.vendor = res; console.debug("Vendor updated successfuly!", res)},
+       res => {this.vendor = res; console.debug("Vendor updated successfuly!", res); 
+       this.router.navigateByUrl("/vendor/list");},
        err => console.error(err))
-       this.router.navigateByUrl("/vendor/list");
+
    }
  
    getId(): number{

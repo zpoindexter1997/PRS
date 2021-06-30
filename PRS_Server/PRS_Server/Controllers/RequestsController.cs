@@ -171,14 +171,9 @@ namespace PRS_Server.Controllers
 
         // PUT: api/Requests/5/rejected
         [HttpPut("{id}/rejected")]
-        public async Task<IActionResult> PutRequestReject(int id)
+        public async Task<IActionResult> PutRequestReject(int id, Request request)
         {
-            var request = await _context.Requests.FindAsync(id);
 
-            if (request == null)
-            {
-                return NotFound();
-            }
             request.Status = "REJECTED";
 
             return await PutRequest(id, request);

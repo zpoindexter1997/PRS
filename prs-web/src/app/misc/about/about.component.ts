@@ -18,6 +18,10 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.toggleImage();
   }
 
+  toggleImage(): void {
+      $("img").fadeIn(60000)
+  }
 }

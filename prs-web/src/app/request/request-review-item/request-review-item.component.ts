@@ -20,6 +20,7 @@ export class RequestReviewItemComponent implements OnInit {
     private router: Router
   ) { }
   request!: Request;
+  message: string = "";
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
@@ -41,17 +42,24 @@ export class RequestReviewItemComponent implements OnInit {
 
   approve(): void{
     this.requestsvc.approve(this.request).subscribe(
-      res => {console.debug("Request successfully approved!", res)},
+      res => {console.debug("Request successfully approved!", res);
+      this.router.navigateByUrl("/request/review/list")},
       err => {console.error(err)}
     )
-    this.router.navigateByUrl("/request/review/list")
+
   }
   reject(): void{
-    this.requestsvc.reject(this.request).subscribe(
-      res => {console.debug("Request successfully rejected!", res)},
-      err => {console.error(err)}
-    )
-    this.router.navigateByUrl("/request/review/list")
+    console.debug("This is the problem", this.request);
+    if(this.request.rejectionReason !== null && this.request.rejectionReason !== ""){
+      this.requestsvc.reject(this.request).subscribe(
+        res => {console.debug("Request successfully rejected!", res);
+        this.router.navigateByUrl("/request/review/list")},
+        err => {console.error(err)}
+        )
+      } else{
+        this.message = "Must include a reason for rejection!"
+      }
+
   }
 
 }

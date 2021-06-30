@@ -43,9 +43,8 @@ export class RequestlineCreateComponent implements OnInit {
     this.newRequestLine.productId = +this.newRequestLine.productId;
     console.debug(this.newRequestLine);
     this.requestlinesvc.create(this.newRequestLine).subscribe(
-      res => { console.debug("Request Line created successfuly!", res) },
+      res => { console.debug("Request Line created successfuly!", res);this.router.navigateByUrl(`/request/lines/${this.getId()}`); },
       err => console.error(err))
-    this.router.navigateByUrl(`/request/lines/${this.getId()}`);
   }
   getId(): number{
     const routeParams = this.activatedRoute.snapshot.paramMap;

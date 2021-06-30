@@ -40,23 +40,23 @@ export class AppComponent {
 
   ngOnInit(): void{
     this.usersvc.list().subscribe(
-      res => {this.users = res; console.log("Users loaded successfuly!", res)},
+      res => {this.users = res; console.debug("Users loaded successfuly!", res)},
       err => console.error(err))
     
     this.productsvc.list().subscribe(
-      res => {this.products = res; console.log("Products loaded successfuly!", res)},
+      res => {this.products = res; console.debug("Products loaded successfuly!", res)},
       err => console.error(err))
     
     this.requestsvc.list().subscribe(
-      res => {this.requests = res; console.log("Requests loaded successfuly!", res)},
+      res => {this.requests = res; console.debug("Requests loaded successfuly!", res)},
       err => console.error(err))
     
     this.requestlinesvc.list().subscribe(
-      res => {this.requestlines = res; console.log("RequestLines loaded successfuly!", res)},
+      res => {this.requestlines = res; console.debug("RequestLines loaded successfuly!", res)},
       err => console.error(err))
     
     this.vendorsvc.list().subscribe(
-      res => {this.vendors = res; console.log("Vendors loaded successfuly!", res)},
+      res => {this.vendors = res; console.debug("Vendors loaded successfuly!", res)},
       err => console.error(err))
     
     }
@@ -65,7 +65,7 @@ export class AppComponent {
 
     // logIn(username: string, password: string): void{
     //   this.usersvc.login(username, password).subscribe(
-    //     res => {this.loggedInUser = res; console.log("Successfully logged in:", res)},
+    //     res => {this.loggedInUser = res; console.debug("Successfully logged in:", res)},
     //     err => console.error(err));
     //     this.router.navigateByUrl("/home")
     //   }

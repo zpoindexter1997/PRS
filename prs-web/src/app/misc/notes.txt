@@ -1,16 +1,7 @@
-add line on ngOnInit everywhere - if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login")}
-make virtuals nullable | null = null
-add requestlines under request class - requestLines: RequestLine[] | null = null
-add reviews component under requestline folder
 requestlines dropdown from requests
-add an about component - special slow fade in, some info about myself and how hype I am to graduate
-change console.logs to console.debug
 <div> around the buttons to sort with styling </div>
 more <div> tags
 Make create functions visible only if loggedInUser isAdmin
-under creating requests - dropdown list selecting customers pointing to id
-Dropdown on products for vendor info
 PhotoPath on products
-Create product - change vendor id to a dropdown of vendors
 un-center actions
 fix e404 logging you out but still rerouting

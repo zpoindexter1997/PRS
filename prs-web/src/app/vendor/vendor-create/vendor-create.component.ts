@@ -25,9 +25,10 @@ export class VendorCreateComponent implements OnInit {
   }
   create(): void {
     this.vendorsvc.create(this.newVendor).subscribe(
-      res => { console.debug("Vendor created successfuly!", res) },
+      res => { console.debug("Vendor created successfuly!", res);
+      this.router.navigateByUrl("/vendor/list");
+    },
       err => console.error(err))
-    this.router.navigateByUrl("/vendor/list");
   }
 
 }

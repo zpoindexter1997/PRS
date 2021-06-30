@@ -40,7 +40,7 @@
             <th>Product</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Actions</th>
+            <th *ngIf="display">Actions</th>
         </tr>
         <tr *ngFor="let rl of request.requestLines">
             <td>{{rl.id}}</td>
@@ -48,7 +48,7 @@
             <td>{{rl.product?.name}}</td>
             <td>{{rl.product?.price | currency}}</td>
             <td>{{rl.quantity}}</td>
-            <td> <a routerLink="/requestline/edit/{{rl.id}}">Edit</a> </td>
+            <td *ngIf="display"> <a routerLink="/requestline/edit/{{rl.id}}">Edit</a> </td>
         </tr>
     </tbody>
 </table>

@@ -18,9 +18,12 @@ export class UserListComponent implements OnInit {
     private router: Router
   ) { }
   users!: User[];
-
+  display: boolean = false;
+  loggedInUser = this.syssvc.loggedInUser;
+  
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     this.usersvc.list().subscribe(
       res => {this.users = res; console.debug("Users loaded successfuly!", res)},
       err => console.error(err))

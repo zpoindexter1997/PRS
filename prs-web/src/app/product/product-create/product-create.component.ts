@@ -38,8 +38,9 @@ export class ProductCreateComponent implements OnInit {
     console.debug(this.newProduct)
     this.newProduct.vendorId = +this.newProduct.vendorId;
     this.productsvc.create(this.newProduct).subscribe(
-      res => { console.debug("Product created successfuly!", res) },
+      res => { console.debug("Product created successfuly!", res);
+      this.router.navigateByUrl("/product/list");
+    },
       err => console.error(err))
-    this.router.navigateByUrl("/product/list");
   }
 }

@@ -18,9 +18,12 @@ export class RequestListComponent implements OnInit {
     private router: Router
   ) { }
   requests!: Request[];
-
+  display: boolean = false;
+  loggedInUser = this.syssvc.loggedInUser;
+  
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     this.requestsvc.list().subscribe(
       res => {this.requests = res; console.debug("Requests loaded successfuly!", res)},
       err => console.error(err))

@@ -33,9 +33,10 @@ export class RequestEditComponent implements OnInit {
      const id = this.getId();
      this.request.status = "NEW"
      this.requestsvc.update(this.request).subscribe(
-       res => {this.request = res; console.debug("Request updated successfuly!", res)},
-       err => console.error(err))
+       res => {this.request = res; console.debug("Request updated successfuly!", res);
        this.router.navigateByUrl("/request/list");
+      },
+       err => console.error(err))
    }
  
    getId(): number{

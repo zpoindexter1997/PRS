@@ -16,7 +16,7 @@
         <tr>
             <td>{{request.id}}</td>
             <td>{{request.justification}}</td>
-            <td>{{request.rejectionReason}}</td>
+            <td><input [(ngModel)]="request.rejectionReason" type="text"></td>
             <td>{{request.deliveryMode}}</td>
             <td>{{request.status}}</td>
             <td>{{request.total | currency}}</td>
@@ -26,3 +26,4 @@
 </table>
 <button style="margin-right: 5px;" class="btn btn-success" (click)="approve()">Approve</button>
 <button class="btn btn-danger" (click)="reject()">Reject</button>
+<span style="color: red;">{{message}}</span>

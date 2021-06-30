@@ -23,9 +23,12 @@ export class RequestLinesComponent implements OnInit {
     private router: Router
   ) { }
   request!: Request;
+  display: boolean = false;
+  loggedInUser = this.syssvc.loggedInUser;
 
   ngOnInit(): void {
     if(this.syssvc.loggedInUser == null) { this.router.navigateByUrl("/login");}
+    this.display = this.loggedInUser?.isAdmin == true ? true : false;
     let id = this.getId();
     this.requestsvc.get(id).subscribe(
       res => {this.request = res;
@@ -43,9 +46,10 @@ export class RequestLinesComponent implements OnInit {
 
   review(): void{
     this.requestsvc.setReview(this.request).subscribe(
-      res => {console.debug("Request successfully set for review!", res)},
+      res => {console.debug("Request successfully set for review!", res);
+      this.router.navigateByUrl("/request/list");
+    },
       err => {console.error(err)}
     )
-    this.router.navigateByUrl("/request/list")
   }
 }

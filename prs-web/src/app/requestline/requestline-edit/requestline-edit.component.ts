@@ -42,9 +42,10 @@ export class RequestlineEditComponent implements OnInit {
      const id = this.getId();
      this.requestline.productId = +this.requestline.productId;
      this.requestlinesvc.update(this.requestline).subscribe(
-       res => {this.requestline = res; console.debug("Request Line updated successfuly!", res)},
-       err => console.error(err))
+       res => {this.requestline = res; console.debug("Request Line updated successfuly!", res);
        this.router.navigateByUrl("/request/list");
+      },
+       err => console.error(err))
    }
  
    getId(): number{

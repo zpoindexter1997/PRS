@@ -5,3 +5,29 @@ Make create functions visible only if loggedInUser isAdmin
 PhotoPath on products
 un-center actions
 fix e404 logging you out but still rerouting
+
+Purchase Orders...
+
+Create PO class
+--user, userId, vendorId, vendor, partNbr, productname, price, unit, qty, date created
+
+Create component PO-List - route is /po/list/:id (id will be vendor id)
+Displays current pos for this vendor 
+-vendor service
+-product service
+-similar to Request-Lines
+
+--Create new PO link at the top
+--Display Vendor info at the top in seperate table
+--Display PO details in table below
+---User that created PO, product, total, date PO was created, admin button saying completed (delete po)
+Create an array of POs, create a function that holds vendorPOs[], if(PO.vendorId == getId(){vendorPOs.push(PO)})
+*ngFor="let po of vendorPOs" 
+
+Create component PO-Create - route is /po/create/:id (id will be vendor id)
+-product service
+--Dropdown to select products only available by this vendor
+--Number field for qty
+
+
+Under vendors actions, add link to vendor/purchaseorders

@@ -41,6 +41,8 @@ import { RequestLinesComponent } from './request/request-lines/request-lines.com
 import { SearchRequestPipe } from './request/search-request.pipe';
 import { RequestReviewListComponent } from './request/request-review-list/request-review-list.component';
 import { RequestReviewItemComponent } from './request/request-review-item/request-review-item.component';
+import { PurchaseorderListComponent } from './purchaseorder/purchaseorder-list/purchaseorder-list.component';
+import { PurchaseorderCreateComponent } from './purchaseorder/purchaseorder-create/purchaseorder-create.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { RequestReviewItemComponent } from './request/request-review-item/reques
     RequestLinesComponent,
     SearchRequestPipe,
     RequestReviewListComponent,
-    RequestReviewItemComponent
+    RequestReviewItemComponent,
+    PurchaseorderListComponent,
+    PurchaseorderCreateComponent
   ],
   imports: [
     BrowserModule,

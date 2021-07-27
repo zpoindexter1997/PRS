@@ -1,20 +1,14 @@
-import { Product } from "../product/product.class";
-import { User } from "../user/user.class";
-import { Vendor } from "../vendor/vendor.class";
-
 export class PurchaseOrder{
-    user: User | null = null;
-    vendor: Vendor | null = null;
-    product: Product | null = null;
+    productName: string = "";
+    productNbr: number = 0;
     quantity: number = 0;
     price: number = 0;
-    dateCreated: number = Date.now();
 
-    constructor(user: User, vendor: Vendor, product: Product, quantity: number){
-        this.user = user;
-        this.vendor = vendor;
-        this.product = product;
+
+    constructor(price: number, productName: string, productNbr: number, quantity: number){
+        this.productName = productName;
+        this.productNbr = productNbr;
         this.quantity = quantity;
-        this.price = product.price * quantity;
+        this.price = price;
     }
 }

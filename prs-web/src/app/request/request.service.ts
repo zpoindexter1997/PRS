@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Request } from 'src/app/request/request.class'
+import { PurchaseOrder } from '../purchaseorder/purchaseorder.class';
 
 const baseurl: string = "http://localhost:1337/api/Requests"
 
@@ -17,6 +18,9 @@ export class RequestService {
 
   list(): Observable<Request[]> {
     return this.http.get(`${baseurl}/detailed`) as Observable<Request[]>;
+  }
+  polist(id: number): Observable<PurchaseOrder[]> {
+    return this.http.get(`${baseurl}/PO/${id}`) as Observable<PurchaseOrder[]>;
   }
   get(id: number): Observable<Request> {
     return this.http.get(`${baseurl}/${id}/detailed`) as Observable<Request>;

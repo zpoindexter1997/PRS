@@ -28,8 +28,14 @@ namespace PRS_Server
         {
             services.AddControllers();
 
+            var DbKey = "WebDb";
+
+#if DEBUG
+            DbKey = "LocalDb;
+#endif
+
             services.AddDbContext<PRSContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PRSContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString(DbKey)));
             services.AddCors();
         }
 
@@ -51,6 +57,14 @@ namespace PRS_Server
             {
                 endpoints.MapControllers();
             });
+
+            using var scope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope();
+
+            scope.ServiceProvider.GetService<PRSContext>()
+                .Database
+                .Migrate();
         }
     }
 }

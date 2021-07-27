@@ -33,6 +33,50 @@ namespace PRS_Server.Controllers
             _context = context;
         }
 
+        // GET: api/RequestLines/PO/5
+        [HttpGet("PO/{id}")]
+        public async Task<ActionResult<IEnumerable<PurchaseOrder>>> GetVendor(int id)
+        {
+            var requestLines = await _context.RequestLines
+                .Include(r => r.Request)
+                    .ThenInclude(u => u.User)
+                .Include(p => p.Product)
+                    .ThenInclude(v => v.Vendor)
+                   .Where(v => v.Product.VendorId == id)
+                .ToListAsync();
+
+            List<PurchaseOrder> purchaseOrders = new List<PurchaseOrder>();
+
+            foreach (var r in requestLines)
+            {
+                for (var i = 0; i < purchaseOrders.Count; i++)
+                {
+                    if (r.Product.Name == purchaseOrders[i].ProductName)
+                    {
+                        purchaseOrders[i].Quantity += r.Quantity;
+                        break;
+                    }
+                    else if (i == purchaseOrders.Count - 1)
+                    {
+                        var po = new PurchaseOrder();
+                        po.ProductName = r.Product.Name;
+                        po.Price = r.Product.Price;
+                        po.Quantity = r.Quantity;
+                        po.ProductNbr = r.Product.PartNbr;
+                        purchaseOrders.Add(po);
+                    }
+                }
+            }
+
+
+            if (purchaseOrders == null)
+            {
+                return NotFound();
+            }
+
+            return purchaseOrders;
+        }
+
         // GET: api/RequestLines
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RequestLine>>> GetRequestLines()

@@ -12,7 +12,7 @@
             <th>Zip<button (click)="sortFn('zip')" class="btn btn-link"><img [src]="zipImg" width="45px"></button></th>
             <th>Phone<button (click)="sortFn('phone')" class="btn btn-link"><img [src]="phoneImg" width="45px"></button></th>
             <th>Email<button (click)="sortFn('email')" class="btn btn-link"><img [src]="emailImg" width="45px"></button></th>
-            <th style="text-align: center;" colspan="2">Actions</th>
+            <th style="text-align: center;" colspan="3">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +27,7 @@
             <td>{{v.phone}}</td>
             <td>{{v.email}}</td>
             <td> <a routerLink="/vendor/detail/{{v.id}}">Details</a> </td>
+            <!-- <td> <a routerLink="/po/{{v.id}}">POs</a> </td> -->
             <td *ngIf="display"> <a routerLink="/vendor/edit/{{v.id}}">Edit</a> </td>
         </tr>
     </tbody>

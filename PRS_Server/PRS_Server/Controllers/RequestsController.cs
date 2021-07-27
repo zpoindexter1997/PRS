@@ -83,6 +83,25 @@ namespace PRS_Server.Controllers
             return request;
         }
 
+        // GET: api/Requests/PO/5
+        [HttpGet("PO/{id}")]
+        public async Task<ActionResult<IEnumerable<Request>>> GetVendor(int id)
+        {
+            var purchaseOrders = await _context.Requests
+                .Include(r => r.RequestLines)
+                    .ThenInclude(p => p.Product)
+                        .ThenInclude(v => v.Vendor)
+                .Include(u => u.User)
+                .ToListAsync();
+
+            if (purchaseOrders == null)
+            {
+                return NotFound();
+            }
+
+            return purchaseOrders;
+        }
+
         // PUT: api/Requests/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRequest(int id, Request request)

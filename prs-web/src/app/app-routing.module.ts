@@ -27,6 +27,7 @@ import { AboutComponent } from './misc/about/about.component';
 import { RequestLinesComponent } from './request/request-lines/request-lines.component';
 import { RequestReviewListComponent } from './request/request-review-list/request-review-list.component';
 import { RequestReviewItemComponent } from './request/request-review-item/request-review-item.component';
+import { PurchaseorderListComponent } from './purchaseorder/purchaseorder-list/purchaseorder-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -63,6 +64,8 @@ const routes: Routes = [
   {path: 'vendor/create', component: VendorCreateComponent},
   {path: 'vendor/edit/:id', component: VendorEditComponent},
   
+  {path: 'po/:id', component: PurchaseorderListComponent},
+
   {path: '**', component: ErrornotfoundComponent}
 
 ];

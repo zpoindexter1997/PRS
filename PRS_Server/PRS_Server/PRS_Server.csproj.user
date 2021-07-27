@@ -11,5 +11,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>PRS_Server.Data.PRSContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <NameOfLastUsedPublishProfile>C:\repos\PRS\PRS_Server\PRS_Server\Properties\PublishProfiles\zpoindexter.com - FTP.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

@@ -64,46 +64,6 @@ partHolder: number = 0;
       this.totals.push(total);
     }
   }
-
-  // groupPO(requestlines: RequestLine[]): void{
-  //   console.debug("RLs are: ", requestlines);
-  //   if(this.requestLines[0].product){
-  //     this.priceHolder = this.requestLines[0].product.price;
-  //     this.nameHolder = this.requestLines[0].product.name;
-  //     this.partHolder = this.requestLines[0].product.partNbr;
-  //     this.po = new PurchaseOrder(
-  //       this.priceHolder,
-  //       this.nameHolder,
-  //       this.partHolder,
-  //       this.requestLines[0].quantity
-  //       )
-  //       console.debug("First PO: ", this.po)
-  //       this.purchaseOrders.push(this.po)
-  //     }
-  //   for(let r of requestlines){
-  //     console.debug("R is :", r)
-  //     if(r.product){
-  //       for(let po of this.purchaseOrders){
-  //         console.debug("Loop PO is: ", this.po)
-  //         if(r.product.name == po.productName){
-  //           po.quantity += r.quantity;
-  //           return;
-  //         }
-  //       }
-  //       this.priceHolder = r.product.price;
-  //       this.nameHolder = r.product.name;
-  //       this.partHolder = r.product.partNbr;
-  //     this.po = new PurchaseOrder(
-  //       this.priceHolder,
-  //       this.nameHolder,
-  //       this.partHolder,
-  //       r.quantity
-  //       )
-  //       this.purchaseOrders.push(this.po)
-  //       }
-  //   }
-  //   console.debug("POs are: ", this.purchaseOrders)
-  // }
 }
 
 

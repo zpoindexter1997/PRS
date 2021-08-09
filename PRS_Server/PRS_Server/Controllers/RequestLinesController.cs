@@ -49,32 +49,32 @@ namespace PRS_Server.Controllers
 
             foreach (var r in requestLines)
             {
-                for (var i = 0; i < purchaseOrders.Count; i++)
-                {
-                    if (r.Product.Name == purchaseOrders[i].ProductName)
-                    {
-                        purchaseOrders[i].Quantity += r.Quantity;
-                        break;
-                    }
-                    else if (i == purchaseOrders.Count - 1)
-                    {
-                        var po = new PurchaseOrder();
-                        po.ProductName = r.Product.Name;
-                        po.Price = r.Product.Price;
-                        po.Quantity = r.Quantity;
-                        po.ProductNbr = r.Product.PartNbr;
-                        purchaseOrders.Add(po);
-                    }
-                }
+                var po = new PurchaseOrder();
+                po.ProductName = r.Product.Name;
+                po.Price = r.Product.Price;
+                po.Quantity = r.Quantity;
+                po.ProductNbr = r.Product.PartNbr;
+                purchaseOrders.Add(po);
             }
 
+            List<PurchaseOrder> grouped = purchaseOrders
+                .GroupBy(n => n.ProductName)
+                .Select(po => new PurchaseOrder
+                {
+                    ProductName = po.First().ProductName,
+                    Price = po.First().Price,
+                    Quantity = po.Sum(q => q.Quantity),
+                    ProductNbr = po.First().ProductNbr,
+                }).ToList();
 
-            if (purchaseOrders == null)
+
+
+            if (grouped == null)
             {
                 return NotFound();
             }
 
-            return purchaseOrders;
+            return grouped;
         }
 
         // GET: api/RequestLines

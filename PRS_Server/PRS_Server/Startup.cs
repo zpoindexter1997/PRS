@@ -31,7 +31,7 @@ namespace PRS_Server
             var DbKey = "WebDb";
 
 #if DEBUG
-            DbKey = "LocalDb;
+            DbKey = "LocalDb"   ;
 #endif
 
             services.AddDbContext<PRSContext>(options =>

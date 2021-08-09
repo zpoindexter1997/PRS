@@ -27,7 +27,7 @@
             <td>{{v.phone}}</td>
             <td>{{v.email}}</td>
             <td> <a routerLink="/vendor/detail/{{v.id}}">Details</a> </td>
-            <!-- <td> <a routerLink="/po/{{v.id}}">POs</a> </td> -->
+            <td> <a routerLink="/po/{{v.id}}">POs</a> </td>
             <td *ngIf="display"> <a routerLink="/vendor/edit/{{v.id}}">Edit</a> </td>
         </tr>
     </tbody>

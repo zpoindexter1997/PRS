@@ -2,7 +2,8 @@
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\zhaquon.poindexter\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\zhaquon.poindexter\\.nuget\\packages"
+      "C:\\Users\\zhaquon.poindexter\\.nuget\\packages",
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }
 }
